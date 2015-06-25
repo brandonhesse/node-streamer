@@ -4,9 +4,8 @@
     "use strict";
     var path = require('path'),
         util = require('util'),
-        _ = require('lodash'),
         chalk = require('chalk'),
-        extend = require('extend'),
+        _ = require('lodash'),
         spawn = require('child_process').spawn,
         pkg = require('./package.json'),
         defaults, conf, argv, _o;
@@ -34,7 +33,7 @@
         }
     });
 
-    _o = extend({}, conf, argv);
+    _o = _.extend({}, [conf, argv]);
 
     if (_o.version) {
         console.log(
@@ -49,18 +48,19 @@
     }
 
     // spawn(cmd, [args], {opts});
-    var aggregate = '-I dummy --play-and-exit --no-random --no-loop'.split();
+    var aggregate = ['-I','dummy','--play-and-exit','--no-random','--no-loop'];
     var file_opts = [
         ['--file-caching=', _o.cache].join(''),
-        ['--sout=#std{access=http{user=', _o.username, ',pwd=', _o.password, ',mime=video/x-flv},mux=ffmpeg{mux=flv},dst=:', _o.port, '/', _o.path, '}'].join(''),
+        ['--sout=#std{access=http{user=', _o.username,
+            ',pwd=', _o.password,
+            ',mime=video/x-flv},mux=ffmpeg{mux=flv},dst=:', _o.port,
+            '/', _o.path, '}'].join(''),
         ['--ttl=', _o.ttl].join('')
     ];
 
     _o._.forEach(function (file) {
-        aggregate += file + file_opts;
+        aggregate = aggregate.concat(file, file_opts);
     });
 
-    spawn(
-
-    )
+    spawn(_o.vlc, aggregate, { detached: _o.wait });
 }());
