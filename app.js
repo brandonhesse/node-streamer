@@ -35,7 +35,7 @@
 
     _o = _.extend({}, conf, argv);
 
-    console.log(JSON.stringify(_o));
+    _o.verbose || console.log(chalk.bold.red('ARGS:'), JSON.stringify(_o, null, 2));
 
     if (_o.version) {
         console.log(
