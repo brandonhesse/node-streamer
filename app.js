@@ -33,7 +33,9 @@
         }
     });
 
-    _o = _.extend({}, [conf, argv]);
+    _o = _.extend({}, conf, argv);
+
+    console.log(JSON.stringify(_o));
 
     if (_o.version) {
         console.log(

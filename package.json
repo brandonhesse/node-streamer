@@ -1,7 +1,8 @@
 {
-  "name": "streamer",
+  "name": "stream-passthru",
   "version": "1.0.0",
   "description": "A script to stream files via VLC",
+  "repository": "https://github.com/brandonhesse/node-streamer.git",
   "main": "app.js",
   "scripts": {
     "start": "node app"
@@ -10,12 +11,11 @@
   "license": "MIT",
   "preferGlobal": true,
   "bin": {
-    "streamer": "app.js"
+    "stream-passthru": "app.js"
   },
   "dependencies": {
     "chalk": "^1.0.0",
-    "extend": "^2.0.1",
-    "lodash": "^3.8.0",
+    "lodash": "^3.9.3",
     "minimist": "^1.1.1",
     "rc": "^1.0.3"
   }
