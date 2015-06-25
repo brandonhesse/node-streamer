@@ -64,5 +64,5 @@
         aggregate = aggregate.concat(file, file_opts);
     });
 
-    spawn(_o.vlc, aggregate, { detached: !_o.wait });
+    spawn(_o.vlc, aggregate, { detached: !_o.wait, stdio: 'inherit' });
 }());
