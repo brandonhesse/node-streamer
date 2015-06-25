@@ -23,7 +23,7 @@ $ sudo npm install -g
 $ stream-passthru [options] file [...files]
 ```
 
-Supports a "rc" file through (rc)[https://www.npmjs.com/package/rc]
+Supports a "rc" file through [rc](https://www.npmjs.com/package/rc)
 Command line arguments override the config file operations
 Tested with node.js version 10.36, should work to current stable.
 
