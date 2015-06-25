@@ -35,7 +35,9 @@
 
     _o = _.extend({}, conf, argv);
 
-    if(_o.verbose) { console.log(chalk.bold.red('ARGS:'), JSON.stringify(_o, null, 2)); }
+    if (_o.verbose) {
+        console.log(chalk.bold.red('ARGS:'), JSON.stringify(_o, null, 2));
+    }
 
     if (_o.version) {
         console.log(
@@ -50,7 +52,7 @@
     }
 
     // spawn(cmd, [args], {opts});
-    var aggregate = ['-I','dummy','--play-and-exit','--no-random','--no-loop'];
+    var aggregate = ['-I', 'dummy', '--play-and-exit', '--no-random', '--no-loop'];
     var file_opts = [
         ['--file-caching=', _o.cache].join(''),
         ['--sout=#std{access=http{user=', _o.username,
@@ -64,6 +66,8 @@
         aggregate = aggregate.concat(file, file_opts);
     });
 
-    var child = spawn(_o.vlc, aggregate, { detached: !_o.wait, stdio: _o.wait ? 'inherit' : 'ignore' });
-    _o.wait || child.unref();
+    var child = spawn(_o.vlc, aggregate, {detached: !_o.wait, stdio: 'inherit'});
+    if (!_o.wait) {
+        child.unref();
+    }
 }());
